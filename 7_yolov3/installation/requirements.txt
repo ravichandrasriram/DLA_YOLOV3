@@ -5,7 +5,7 @@ torchvision==0.4.2
 matplotlib
 pycocotools
 tqdm
-Pillow
+Pillow==6.2.1
 
 tensorboard
 
