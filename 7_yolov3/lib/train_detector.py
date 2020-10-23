@@ -778,26 +778,34 @@ class Detector():
                 del chkpt
 
 
-           # end training
-           if(self.system_dict["dataset"]["val"]["status"]):
-                n = self.system_dict["params"]["name"]
-                if len(n):
-                    n = '_' + n if not n.isnumeric() else n
-                    fresults, flast, fbest = 'results%s.txt' % n, 'last%s.pt' % n, 'best%s.pt' % n
-                    os.rename('results.txt', fresults)
-                    os.rename(self.system_dict["fixed_params"]["wdir"] + 'last.pt',self.system_dict["fixed_params"]["wdir"] + flast) if os.path.exists(self.system_dict["fixed_params"]["wdir"] + 'last.pt') else None
-                    os.rename(self.system_dict["fixed_params"]["wdir"] + 'best.pt', self.system_dict["fixed_params"]["wdir"] + fbest) if os.path.exists(self.system_dict["fixed_params"]["wdir"] + 'best.pt') else None
+        # end training
+        if(self.system_dict["dataset"]["val"]["status"]):
+            n = self.system_dict["params"]["name"]
+            if len(n):
+                n = '_' + n if not n.isnumeric() else n
+                fresults, flast, fbest = 'results%s.txt' % n, 'last%s.pt' % n, 'best%s.pt' % n
+                os.rename('results.txt', fresults)
+                os.rename(self.system_dict["fixed_params"]["wdir"] + 'last.pt', 
+                    self.system_dict["fixed_params"]["wdir"] + flast) if os.path.exists(self.system_dict["fixed_params"]["wdir"] + 'last.pt') else None
+                os.rename(self.system_dict["fixed_params"]["wdir"] + 'best.pt', 
+                    self.system_dict["fixed_params"]["wdir"] + fbest) if os.path.exists(self.system_dict["fixed_params"]["wdir"] + 'best.pt') else None
 
-                    # save to cloud
-                    if self.system_dict["params"]["bucket"]:
-                        os.system('gsutil cp %s %s gs://%s' % (fresults, self.system_dict["fixed_params"]["wdir"] + flast, self.system_dict["params"]["bucket"]))
+                # save to cloud
+                if self.system_dict["params"]["bucket"]:
+                    os.system('gsutil cp %s %s gs://%s' % (fresults, self.system_dict["fixed_params"]["wdir"] + flast, 
+                        self.system_dict["params"]["bucket"]))
 
-                if not self.system_dict["params"]["evolve"]:
-                    plot_results()  # save as results.png
-                print('%g epochs completed in %.3f hours.\n' % (epoch - self.system_dict["local"]["start_epoch"] + 1, (time.time() - t0) / 3600))
-                dist.destroy_process_group() if torch.cuda.device_count() > 1 else None
-                torch.cuda.empty_cache()
+            if not self.system_dict["params"]["evolve"]:
+                plot_results()  # save as results.png
+            print('%g epochs completed in %.3f hours.\n' % (epoch - self.system_dict["local"]["start_epoch"] + 1, (time.time() - t0) / 3600))
+            dist.destroy_process_group() if torch.cuda.device_count() > 1 else None
+            torch.cuda.empty_cache()
 
             return results
+
+                
+
+
+           
 
                 
