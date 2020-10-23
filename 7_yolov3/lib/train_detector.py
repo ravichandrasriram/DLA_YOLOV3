@@ -316,9 +316,7 @@ class Detector():
 
         #Device Setup
         
-        self.system_dict["local"]["device"] = torch_utils.select_device(self.system_dict["params"]["device"], 
-                                                                        apex=self.system_dict["params"]["mixed_precision"], 
-                                                                        batch_size=self.system_dict["params"]["batch_size"])
+        self.system_dict["local"]["device"] = torch_utils.select_device(self.system_dict["params"]["device"], apex=self.system_dict["params"]["mixed_precision"], batch_size=self.system_dict["params"]["batch_size"])
         if self.system_dict["local"]["device"].type == 'cpu':
             self.system_dict["params"]["mixed_precision"] = False
 
