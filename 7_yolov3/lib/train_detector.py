@@ -315,7 +315,7 @@ class Detector():
 
 
         #Device Setup
-        self.system_dict["params"]["weights"] = last if self.system_dict["params"]["resume"] else self.system_dict["params"]["weights"]
+        
         self.system_dict["local"]["device"] = torch_utils.select_device(self.system_dict["params"]["device"], 
                                                                         apex=self.system_dict["params"]["mixed_precision"], 
                                                                         batch_size=self.system_dict["params"]["batch_size"])
