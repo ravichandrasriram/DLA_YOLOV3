@@ -287,13 +287,13 @@ class Detector():
             self.system_dict["params"]["adam"] = False;
         self.system_dict["fixed_params"]["hyp"]["lr0"] = lr;
         self.system_dict["params"]["rect"] = False;
-        self.system_dict["params"]["resume"] = False;
+        self.system_dict["params"]["resume"] = True;
         self.system_dict["params"]["nosave"] = False;
         self.system_dict["params"]["notest"] = False;
         self.system_dict["params"]["evolve"] = evolve;
         self.system_dict["params"]["num_generations"] = num_generations;
         self.system_dict["params"]["bucket"] = "";
-        self.system_dict["params"]["weights"] = "";
+        self.system_dict["params"]["weights"] = "dla_yolov3/dla_yolov3.pt";
         self.system_dict["params"]["arc"] = "default";
         self.system_dict["params"]["name"] = "";
         self.system_dict["params"]["device"] = gpu_devices;
