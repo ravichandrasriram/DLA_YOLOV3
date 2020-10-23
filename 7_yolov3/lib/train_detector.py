@@ -778,8 +778,8 @@ class Detector():
                 del chkpt
 
 
-            # end training
-            if(self.system_dict["dataset"]["val"]["status"]):
+           # end training
+           if(self.system_dict["dataset"]["val"]["status"]):
                 n = self.system_dict["params"]["name"]
                 if len(n):
                     n = '_' + n if not n.isnumeric() else n
