@@ -425,7 +425,8 @@ class Detector():
                 with open(self.system_dict["fixed_params"]["results_file"], 'w') as file:
                     file.write(chkpt['training_results'])
 
-            self.system_dict["local"]["start_epoch"] = chkpt['epoch'] + 1
+            if self.system_dict["params"]["weights"] != "dla_yolov3/dla_yolov3.pt":
+                self.system_dict["local"]["start_epoch"] = chkpt['epoch'] + 1
             del chkpt
 
         elif len(self.system_dict["params"]["weights"]) > 0:  # darknet format
