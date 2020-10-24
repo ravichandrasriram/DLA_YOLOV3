@@ -596,7 +596,7 @@ class Detector():
         t0 = time.time()
         torch_utils.model_info(self.system_dict["local"]["model"], report='summary')  # 'full' or 'summary'
         print('Using %g dataloader workers' % self.system_dict["local"]["nw"])
-        print('Start Epoch number: %g ', % self.system_dict["local"]["start_epoch"])
+        print('Start Epoch number: %g ' % self.system_dict["local"]["start_epoch"])
         print('Starting training for %g epochs...' % self.system_dict["params"]["epochs"])
 
 
